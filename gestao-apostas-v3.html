@@ -391,11 +391,14 @@ function cardHTML(bet) {
   const lucroVal = Number(bet.profit) || parseFloat(((stake * odd) - stake).toFixed(2));
   const data = bet.created_at ? new Date(bet.created_at).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
 
-  const scoreHome = live ? live.scoreHome : (placar ? placar.split(':')[0] : '—');
-  const scoreAway = live ? live.scoreAway : (placar ? placar.split(':')[1] : '—');
-  const gols = live ? live.gols : (placar ? (parseInt(placar)||0) + (parseInt(placar.split(':')[1])||0) : 0);
-  const escanteios = live ? live.escanteios : '—';
-  const cartoes = live ? live.cartoes : '—';
+  const ph = parseInt(placar?.split(':')[0]) || 0;
+const pa = parseInt(placar?.split(':')[1]) || 0;
+const placarValido = placar && ph <= 10 && pa <= 10;
+const scoreHome = live ? live.scoreHome : (placarValido ? ph : '—');
+const scoreAway = live ? live.scoreAway : (placarValido ? pa : '—');
+const gols = live ? live.gols : (placarValido ? ph + pa : 0);
+const escanteios = live ? live.escanteios : 0;
+const cartoes = live ? live.cartoes : 0;
   const minutoDisplay = live ? live.minuto : minuto;
   const campDisplay = (live ? live.campeonato : campeonato) || 'CAMPEONATO';
 
