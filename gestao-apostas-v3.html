@@ -27,6 +27,71 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 .banca-label { font-size:10px; color:var(--text3); letter-spacing:.5px; margin-bottom:4px; }
 .banca-valor { font-size:20px; font-weight:700; color:var(--green); }
 .banca-meta { font-size:10px; color:var(--text3); margin-top:4px; }
+
+/* ── PÁGINAS ── */
+.page { display:none; }
+.page.active { display:block; }
+
+/* ── BANCA ── */
+.banca-hero { background:linear-gradient(135deg,#0d1f14 0%,#111118 100%); border:1px solid rgba(0,255,136,0.15); border-radius:16px; padding:32px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between; }
+.banca-hero-left {}
+.banca-hero-label { font-size:11px; color:var(--text3); letter-spacing:1px; font-weight:600; margin-bottom:8px; }
+.banca-hero-valor { font-size:48px; font-weight:800; color:var(--green); line-height:1; }
+.banca-hero-sub { font-size:13px; color:var(--text2); margin-top:8px; }
+.banca-hero-right { display:flex; gap:32px; }
+.banca-hero-stat { text-align:center; }
+.banca-hero-stat-val { font-size:22px; font-weight:700; }
+.banca-hero-stat-lbl { font-size:11px; color:var(--text3); margin-top:4px; letter-spacing:.5px; }
+
+.banca-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px; }
+.banca-card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:20px; }
+.banca-card-title { font-size:12px; color:var(--text3); letter-spacing:.5px; font-weight:600; margin-bottom:16px; text-transform:uppercase; }
+
+.stat-row-item { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); }
+.stat-row-item:last-child { border-bottom:none; }
+.stat-row-label { font-size:13px; color:var(--text2); display:flex; align-items:center; gap:8px; }
+.stat-row-dot { width:8px; height:8px; border-radius:50%; }
+.stat-row-val { font-size:14px; font-weight:700; }
+
+.banca-extrato { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:20px; }
+.extrato-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.extrato-title { font-size:12px; color:var(--text3); letter-spacing:.5px; font-weight:600; text-transform:uppercase; }
+.extrato-item { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--border); }
+.extrato-item:last-child { border-bottom:none; }
+.extrato-info { display:flex; align-items:center; gap:12px; }
+.extrato-icon { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+.extrato-icon-green { background:rgba(0,255,136,0.1); }
+.extrato-icon-red { background:rgba(255,68,68,0.1); }
+.extrato-icon-yellow { background:rgba(240,165,0,0.1); }
+.extrato-evento { font-size:13px; font-weight:600; }
+.extrato-data { font-size:11px; color:var(--text3); margin-top:2px; }
+.extrato-val-green { font-size:14px; font-weight:700; color:var(--green); }
+.extrato-val-red { font-size:14px; font-weight:700; color:var(--red); }
+.extrato-val-yellow { font-size:14px; font-weight:700; color:var(--yellow); }
+
+.roi-bar-wrap { margin-top:8px; }
+.roi-bar-label { display:flex; justify-content:space-between; font-size:11px; color:var(--text3); margin-bottom:6px; }
+.roi-bar-track { height:8px; background:var(--bg4); border-radius:8px; overflow:hidden; }
+.roi-bar-fill { height:100%; border-radius:8px; transition:width .6s; }
+
+.an-filtro-btn { font-size:11px; font-weight:600; padding:4px 12px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text2); cursor:pointer; transition:all .15s; }
+.an-filtro-btn:hover { border-color:var(--text2); color:var(--text); }
+.an-filtro-btn.active { background:rgba(0,255,136,0.1); border-color:rgba(0,255,136,0.3); color:var(--green); }
+
+/* ── ROADMAP PAGE ── */
+.roadmap-page { max-width:720px; }
+.roadmap-title { font-size:22px; font-weight:700; margin-bottom:6px; }
+.roadmap-sub { font-size:13px; color:var(--text2); margin-bottom:32px; }
+.roadmap-section { margin-bottom:28px; }
+.roadmap-section-title { font-size:11px; color:var(--text3); letter-spacing:1px; font-weight:700; text-transform:uppercase; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+.roadmap-item { display:flex; align-items:flex-start; gap:14px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.roadmap-item:last-child { border-bottom:none; }
+.roadmap-tag { font-size:9px; font-weight:700; padding:3px 9px; border-radius:20px; letter-spacing:.5px; white-space:nowrap; margin-top:2px; }
+.tag-done { background:rgba(0,255,136,0.1); color:var(--green); border:1px solid rgba(0,255,136,0.2); }
+.tag-next { background:rgba(240,165,0,0.1); color:var(--yellow); border:1px solid rgba(240,165,0,0.2); }
+.tag-future { background:rgba(100,100,120,0.2); color:var(--text3); border:1px solid var(--border); }
+.roadmap-item-title { font-size:14px; font-weight:600; margin-bottom:3px; }
+.roadmap-item-desc { font-size:12px; color:var(--text2); line-height:1.5; }
 .main { margin-left:220px; flex:1; padding:32px; }
 .page-header { margin-bottom:28px; }
 .page-title { font-size:22px; font-weight:700; }
@@ -143,22 +208,26 @@ select { background:var(--bg2); border:1px solid var(--border); color:var(--text
     <div><div class="logo-text">GESTÃO DE APOSTAS</div><div class="logo-sub">Painel do Apostador</div></div>
   </div>
   <nav>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" onclick="navegarPara('dashboard');return false;">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
       Dashboard
     </a>
-    <a class="nav-item active" href="#">
+    <a class="nav-item active" href="#" onclick="navegarPara('apostas');return false;" id="nav-apostas" style="border-left-color:var(--green);color:var(--green);background:rgba(0,255,136,0.05);">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
       Apostas
       <span id="count-badge" style="margin-left:auto;background:rgba(0,255,136,0.15);color:var(--green);font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;">0</span>
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" onclick="navegarPara('banca');return false;" id="nav-banca">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
       Banca
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" onclick="navegarPara('analise');return false;" id="nav-analise">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
       Análise
+    </a>
+    <a class="nav-item" href="#" onclick="navegarPara('roadmap');return false;" id="nav-roadmap">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+      Roadmap
     </a>
   </nav>
   <div class="sidebar-footer">
@@ -171,43 +240,322 @@ select { background:var(--bg2); border:1px solid var(--border); color:var(--text
 </aside>
 
 <main class="main">
-  <div class="page-header">
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <div><h1 class="page-title">Apostas</h1><p class="page-sub">Histórico e gestão de entradas</p></div>
-      <div style="display:flex;align-items:center;gap:16px;">
-        <span class="api-status" id="api-status">⚽ API Football: aguardando...</span>
-        <div class="realtime-badge">
-          <div class="realtime-dot" id="realtime-dot"></div>
-          <span id="realtime-label">Conectando...</span>
+
+  <!-- ══ PÁGINA: APOSTAS ══ -->
+  <div class="page active" id="page-apostas">
+    <div class="page-header">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div><h1 class="page-title">Apostas</h1><p class="page-sub">Histórico e gestão de entradas</p></div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span class="api-status" id="api-status">⚽ API Football: aguardando...</span>
+          <div class="realtime-badge">
+            <div class="realtime-dot" id="realtime-dot"></div>
+            <span id="realtime-label">Conectando...</span>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">TOTAL APOSTADO</div><div class="stat-value stat-green" id="stat-total">R$ 0</div><div class="stat-sub" id="stat-count">0 apostas</div></div>
+      <div class="stat-card"><div class="stat-label">PENDENTES</div><div class="stat-value stat-yellow" id="stat-pending">0</div><div class="stat-sub">aguardando resultado</div></div>
+      <div class="stat-card"><div class="stat-label">GREEN</div><div class="stat-value stat-green" id="stat-green">0</div><div class="stat-sub" id="stat-lucro">R$ 0 lucro</div></div>
+      <div class="stat-card"><div class="stat-label">RED</div><div class="stat-value stat-red" id="stat-red">0</div><div class="stat-sub" id="stat-perda">R$ 0 perda</div></div>
+    </div>
+    <div class="section-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <h2 class="section-title">Minhas Apostas</h2>
+        <span class="section-badge"><span class="live-dot"></span>Tempo real</span>
+      </div>
+      <select id="filtro-status">
+        <option value="all">Todas</option>
+        <option value="PENDING">Pendentes</option>
+        <option value="GREEN">Green</option>
+        <option value="RED">Red</option>
+      </select>
+    </div>
+    <div class="apostas-grid" id="apostas-grid">
+      <div class="loading-card"><div class="loading-line" style="width:60%"></div><div class="loading-line" style="width:80%"></div><div class="loading-line" style="width:40%"></div></div>
+      <div class="loading-card"><div class="loading-line" style="width:70%"></div><div class="loading-line" style="width:50%"></div><div class="loading-line" style="width:90%"></div></div>
+    </div>
+  </div>
+
+  <!-- ══ PÁGINA: BANCA ══ -->
+  <div class="page" id="page-banca">
+    <div class="page-header">
+      <h1 class="page-title">Banca</h1>
+      <p class="page-sub">Gestão financeira das suas apostas</p>
+    </div>
+
+    <!-- Hero saldo -->
+    <div class="banca-hero">
+      <div class="banca-hero-left">
+        <div class="banca-hero-label">SALDO ATUAL</div>
+        <div class="banca-hero-valor" id="banca-hero-valor">R$ 0,00</div>
+        <div class="banca-hero-sub" id="banca-hero-sub">Calculado a partir dos resultados</div>
+      </div>
+      <div class="banca-hero-right">
+        <div class="banca-hero-stat">
+          <div class="banca-hero-stat-val stat-green" id="banca-hero-lucro">R$ 0,00</div>
+          <div class="banca-hero-stat-lbl">TOTAL GREEN</div>
+        </div>
+        <div class="banca-hero-stat">
+          <div class="banca-hero-stat-val stat-red" id="banca-hero-perda">R$ 0,00</div>
+          <div class="banca-hero-stat-lbl">TOTAL RED</div>
+        </div>
+        <div class="banca-hero-stat">
+          <div class="banca-hero-stat-val stat-yellow" id="banca-hero-pendente">R$ 0,00</div>
+          <div class="banca-hero-stat-lbl">EM RISCO</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="banca-grid">
+      <!-- Resumo de performance -->
+      <div class="banca-card">
+        <div class="banca-card-title">📊 Performance</div>
+        <div class="stat-row-item">
+          <div class="stat-row-label"><div class="stat-row-dot" style="background:var(--green)"></div>Apostas Green</div>
+          <div class="stat-row-val stat-green" id="bperf-green">0</div>
+        </div>
+        <div class="stat-row-item">
+          <div class="stat-row-label"><div class="stat-row-dot" style="background:var(--red)"></div>Apostas Red</div>
+          <div class="stat-row-val stat-red" id="bperf-red">0</div>
+        </div>
+        <div class="stat-row-item">
+          <div class="stat-row-label"><div class="stat-row-dot" style="background:var(--yellow)"></div>Pendentes</div>
+          <div class="stat-row-val stat-yellow" id="bperf-pending">0</div>
+        </div>
+        <div class="stat-row-item">
+          <div class="stat-row-label"><div class="stat-row-dot" style="background:var(--purple)"></div>Cashout</div>
+          <div class="stat-row-val" style="color:var(--purple)" id="bperf-cashout">0</div>
+        </div>
+        <div class="stat-row-item">
+          <div class="stat-row-label">Total de apostas</div>
+          <div class="stat-row-val" id="bperf-total">0</div>
+        </div>
+      </div>
+
+      <!-- ROI e taxa de acerto -->
+      <div class="banca-card">
+        <div class="banca-card-title">🎯 Métricas</div>
+        <div style="margin-bottom:18px;">
+          <div class="roi-bar-label">
+            <span>Taxa de Acerto</span>
+            <span id="bmet-taxa" style="color:var(--green);font-weight:700;">0%</span>
+          </div>
+          <div class="roi-bar-track">
+            <div class="roi-bar-fill" id="bmet-taxa-bar" style="width:0%;background:linear-gradient(90deg,var(--green),var(--green2))"></div>
+          </div>
+        </div>
+        <div style="margin-bottom:18px;">
+          <div class="roi-bar-label">
+            <span>ROI</span>
+            <span id="bmet-roi" style="color:var(--yellow);font-weight:700;">0%</span>
+          </div>
+          <div class="roi-bar-track">
+            <div class="roi-bar-fill" id="bmet-roi-bar" style="width:0%;background:linear-gradient(90deg,var(--yellow),#f0a500)"></div>
+          </div>
+        </div>
+        <div class="stat-row-item">
+          <div class="stat-row-label">Odd média</div>
+          <div class="stat-row-val" id="bmet-odd">0.00</div>
+        </div>
+        <div class="stat-row-item">
+          <div class="stat-row-label">Stake médio</div>
+          <div class="stat-row-val" id="bmet-stake">R$ 0,00</div>
+        </div>
+        <div class="stat-row-item">
+          <div class="stat-row-label">Lucro médio/aposta</div>
+          <div class="stat-row-val stat-green" id="bmet-lucro-medio">R$ 0,00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Extrato -->
+    <div class="banca-extrato">
+      <div class="extrato-header">
+        <div class="extrato-title">📋 Extrato de Apostas</div>
+        <div style="font-size:11px;color:var(--text3)" id="banca-extrato-count">0 registros</div>
+      </div>
+      <div id="banca-extrato-lista">
+        <div style="text-align:center;padding:32px;color:var(--text3);font-size:13px;">Nenhuma aposta finalizada ainda</div>
       </div>
     </div>
   </div>
 
-  <div class="stats-row">
-    <div class="stat-card"><div class="stat-label">TOTAL APOSTADO</div><div class="stat-value stat-green" id="stat-total">R$ 0</div><div class="stat-sub" id="stat-count">0 apostas</div></div>
-    <div class="stat-card"><div class="stat-label">PENDENTES</div><div class="stat-value stat-yellow" id="stat-pending">0</div><div class="stat-sub">aguardando resultado</div></div>
-    <div class="stat-card"><div class="stat-label">GREEN</div><div class="stat-value stat-green" id="stat-green">0</div><div class="stat-sub" id="stat-lucro">R$ 0 lucro</div></div>
-    <div class="stat-card"><div class="stat-label">RED</div><div class="stat-value stat-red" id="stat-red">0</div><div class="stat-sub" id="stat-perda">R$ 0 perda</div></div>
-  </div>
-
-  <div class="section-header">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <h2 class="section-title">Minhas Apostas</h2>
-      <span class="section-badge"><span class="live-dot"></span>Tempo real</span>
+  <!-- ══ PÁGINA: ANÁLISE ══ -->
+  <div class="page" id="page-analise">
+    <div class="page-header">
+      <h1 class="page-title">Análise</h1>
+      <p class="page-sub">Evolução da banca e performance por modelo</p>
     </div>
-    <select id="filtro-status">
-      <option value="all">Todas</option>
-      <option value="PENDING">Pendentes</option>
-      <option value="GREEN">Green</option>
-      <option value="RED">Red</option>
-    </select>
+
+    <!-- Cards resumo topo -->
+    <div class="stats-row" style="margin-bottom:24px;">
+      <div class="stat-card"><div class="stat-label">SALDO TOTAL</div><div class="stat-value" id="an-saldo" style="color:var(--green)">R$ 0,00</div><div class="stat-sub" id="an-roi">ROI: 0%</div></div>
+      <div class="stat-card"><div class="stat-label">TAXA DE ACERTO</div><div class="stat-value stat-green" id="an-taxa">0%</div><div class="stat-sub" id="an-finalizadas">0 finalizadas</div></div>
+      <div class="stat-card"><div class="stat-label">MELHOR MODELO</div><div class="stat-value" id="an-melhor-modelo" style="color:var(--purple)">—</div><div class="stat-sub" id="an-melhor-taxa">0% acerto</div></div>
+      <div class="stat-card"><div class="stat-label">SEQUÊNCIA ATUAL</div><div class="stat-value" id="an-sequencia" style="color:var(--green)">0</div><div class="stat-sub" id="an-sequencia-label">sem apostas</div></div>
+    </div>
+
+    <!-- Gráfico de evolução -->
+    <div class="banca-card" style="margin-bottom:24px;padding:24px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <div class="banca-card-title" style="margin-bottom:0;">📈 EVOLUÇÃO DA BANCA</div>
+        <div style="display:flex;gap:8px;">
+          <button class="an-filtro-btn active" onclick="filtrarGrafico('all',this)">Todas</button>
+          <button class="an-filtro-btn" onclick="filtrarGrafico('conservadora',this)">Conservadora</button>
+          <button class="an-filtro-btn" onclick="filtrarGrafico('realista',this)">Realista</button>
+          <button class="an-filtro-btn" onclick="filtrarGrafico('otimista',this)">Otimista</button>
+        </div>
+      </div>
+      <div style="position:relative;height:240px;width:100%;">
+        <canvas id="grafico-evolucao" style="width:100%;height:240px;"></canvas>
+        <div id="grafico-vazio" style="display:none;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+          <div style="font-size:32px;">📊</div>
+          <div style="font-size:13px;color:var(--text3);">Finalize apostas para ver o gráfico</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:20px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+        <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);"><div style="width:12px;height:3px;background:var(--green);border-radius:2px;"></div>Banca acumulada</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);"><div style="width:12px;height:3px;background:var(--red);border-radius:2px;opacity:.5;"></div>Zero (ref.)</div>
+      </div>
+    </div>
+
+    <!-- Performance por modelo -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px;">
+      <!-- Conservadora -->
+      <div class="banca-card" id="an-card-conservadora">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div class="banca-card-title" style="margin-bottom:0;color:var(--green)">🟢 CONSERVADORA</div>
+          <div style="font-size:10px;color:var(--text3)" id="an-cons-count">0 apostas</div>
+        </div>
+        <div style="text-align:center;margin-bottom:16px;">
+          <div style="font-size:36px;font-weight:800;color:var(--green)" id="an-cons-taxa">0%</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px;">Taxa de acerto</div>
+        </div>
+        <div class="stat-row-item"><div class="stat-row-label">Green</div><div class="stat-row-val stat-green" id="an-cons-green">0</div></div>
+        <div class="stat-row-item"><div class="stat-row-label">Red</div><div class="stat-row-val stat-red" id="an-cons-red">0</div></div>
+        <div class="stat-row-item"><div class="stat-row-label">Saldo</div><div class="stat-row-val" id="an-cons-saldo" style="color:var(--green)">R$ 0,00</div></div>
+        <div class="stat-row-item" style="border:none;"><div class="stat-row-label">ROI</div><div class="stat-row-val" id="an-cons-roi" style="color:var(--green)">0%</div></div>
+      </div>
+
+      <!-- Realista -->
+      <div class="banca-card" id="an-card-realista">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div class="banca-card-title" style="margin-bottom:0;color:var(--yellow)">🟡 REALISTA</div>
+          <div style="font-size:10px;color:var(--text3)" id="an-real-count">0 apostas</div>
+        </div>
+        <div style="text-align:center;margin-bottom:16px;">
+          <div style="font-size:36px;font-weight:800;color:var(--yellow)" id="an-real-taxa">0%</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px;">Taxa de acerto</div>
+        </div>
+        <div class="stat-row-item"><div class="stat-row-label">Green</div><div class="stat-row-val stat-green" id="an-real-green">0</div></div>
+        <div class="stat-row-item"><div class="stat-row-label">Red</div><div class="stat-row-val stat-red" id="an-real-red">0</div></div>
+        <div class="stat-row-item"><div class="stat-row-label">Saldo</div><div class="stat-row-val" id="an-real-saldo" style="color:var(--green)">R$ 0,00</div></div>
+        <div class="stat-row-item" style="border:none;"><div class="stat-row-label">ROI</div><div class="stat-row-val" id="an-real-roi" style="color:var(--green)">0%</div></div>
+      </div>
+
+      <!-- Otimista -->
+      <div class="banca-card" id="an-card-otimista">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div class="banca-card-title" style="margin-bottom:0;color:var(--purple)">🟣 OTIMISTA</div>
+          <div style="font-size:10px;color:var(--text3)" id="an-otim-count">0 apostas</div>
+        </div>
+        <div style="text-align:center;margin-bottom:16px;">
+          <div style="font-size:36px;font-weight:800;color:var(--purple)" id="an-otim-taxa">0%</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px;">Taxa de acerto</div>
+        </div>
+        <div class="stat-row-item"><div class="stat-row-label">Green</div><div class="stat-row-val stat-green" id="an-otim-green">0</div></div>
+        <div class="stat-row-item"><div class="stat-row-label">Red</div><div class="stat-row-val stat-red" id="an-otim-red">0</div></div>
+        <div class="stat-row-item"><div class="stat-row-label">Saldo</div><div class="stat-row-val" id="an-otim-saldo" style="color:var(--green)">R$ 0,00</div></div>
+        <div class="stat-row-item" style="border:none;"><div class="stat-row-label">ROI</div><div class="stat-row-val" id="an-otim-roi" style="color:var(--green)">0%</div></div>
+      </div>
+    </div>
+
+    <!-- Últimas 10 apostas finalizadas -->
+    <div class="banca-extrato">
+      <div class="extrato-header">
+        <div class="extrato-title">🕐 ÚLTIMAS APOSTAS FINALIZADAS</div>
+        <div style="font-size:11px;color:var(--text3)" id="an-ultimas-count">—</div>
+      </div>
+      <div id="an-ultimas-lista">
+        <div style="text-align:center;padding:24px;color:var(--text3);font-size:13px;">Nenhuma aposta finalizada ainda</div>
+      </div>
+    </div>
   </div>
 
-  <div class="apostas-grid" id="apostas-grid">
-    <div class="loading-card"><div class="loading-line" style="width:60%"></div><div class="loading-line" style="width:80%"></div><div class="loading-line" style="width:40%"></div></div>
-    <div class="loading-card"><div class="loading-line" style="width:70%"></div><div class="loading-line" style="width:50%"></div><div class="loading-line" style="width:90%"></div></div>
+  <!-- ══ PÁGINA: ROADMAP ══ -->
+  <div class="page" id="page-roadmap">
+    <div class="page-header">
+      <h1 class="page-title">Roadmap</h1>
+      <p class="page-sub">O que já está pronto e o que vem por aí</p>
+    </div>
+    <div class="roadmap-page">
+
+      <div class="roadmap-section">
+        <div class="roadmap-section-title">✅ Concluído</div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-done">FEITO</span>
+          <div><div class="roadmap-item-title">Cards de apostas em tempo real</div><div class="roadmap-item-desc">Cards com placar ao vivo, gols, escanteios e cartões via API Football.</div></div>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-done">FEITO</span>
+          <div><div class="roadmap-item-title">Integração Supabase + Realtime</div><div class="roadmap-item-desc">Apostas salvas no banco com atualização automática em tempo real.</div></div>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-done">FEITO</span>
+          <div><div class="roadmap-item-title">Extensão Chrome</div><div class="roadmap-item-desc">Captura de apostas automática pela Superbet via extensão.</div></div>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-done">FEITO</span>
+          <div><div class="roadmap-item-title">Resolução automática Green/Red</div><div class="roadmap-item-desc">Sistema que detecta automaticamente o resultado da aposta pelos dados ao vivo.</div></div>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-done">FEITO</span>
+          <div><div class="roadmap-item-title">Página Banca</div><div class="roadmap-item-desc">Saldo, métricas de performance, ROI, taxa de acerto e extrato completo.</div></div>
+        </div>
+      </div>
+
+      <div class="roadmap-section">
+        <div class="roadmap-section-title">🔜 Próximos passos</div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-next">PRÓXIMO</span>
+          <div><div class="roadmap-item-title">Análise avançada</div><div class="roadmap-item-desc">Gráfico de evolução da banca, performance por modelo (Conservadora/Realista/Otimista) e comparativo de mercados.</div></div>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-next">PRÓXIMO</span>
+          <div><div class="roadmap-item-title">Casas de aposta</div><div class="roadmap-item-desc">Cadastro das casas que você usa (Superbet, Bet365, Betano etc), com saldo por casa e histórico separado.</div></div>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-next">PRÓXIMO</span>
+          <div><div class="roadmap-item-title">Alertas</div><div class="roadmap-item-desc">Sistema de alertas configuráveis por partida, mercado e condição. Notificação quando a oportunidade aparecer.</div></div>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-next">PRÓXIMO</span>
+          <div><div class="roadmap-item-title">Toggle claro/escuro</div><div class="roadmap-item-desc">Modo claro para uso em ambiente com muita luz.</div></div>
+        </div>
+      </div>
+
+      <div class="roadmap-section">
+        <div class="roadmap-section-title">🔮 Futuro</div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-future">FUTURO</span>
+          <div><div class="roadmap-item-title">Sistema multi-usuário com login</div><div class="roadmap-item-desc">RLS configurado, cada usuário vê apenas suas apostas.</div></div>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-future">FUTURO</span>
+          <div><div class="roadmap-item-title">Marca d'água / assinatura automática</div><div class="roadmap-item-desc">Ao publicar conteúdo gerado pela ferramenta, incluir assinatura do app estilo CapCut.</div></div>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-tag tag-future">FUTURO</span>
+          <div><div class="roadmap-item-title">Cashout automático por condição</div><div class="roadmap-item-desc">Configurar regra para fechar aposta automaticamente quando atingir certo % de lucro.</div></div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
 </main>
 
 <div class="modal-overlay" id="modal-overlay">
@@ -688,6 +1036,378 @@ async function resolverApostasAutomaticas() {
 
   // Recarregar se houve alguma resolução
   await carregarApostas();
+}
+
+// ── ANÁLISE ──────────────────────────────────────────
+let grafFiltro = 'all';
+
+function filtrarGrafico(filtro, btn) {
+  grafFiltro = filtro;
+  document.querySelectorAll('.an-filtro-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  desenharGrafico();
+}
+
+function calcModelo(modelo) {
+  const lista = apostas.filter(a => {
+    const { modeloRaw } = parseDesc(a.description);
+    return modeloRaw === modelo;
+  });
+  const greens = lista.filter(a => a.result === 'GREEN');
+  const reds   = lista.filter(a => a.result === 'RED');
+  const finalizadas = greens.length + reds.length;
+  const lucro  = greens.reduce((s,a) => s+(Number(a.profit)||0), 0);
+  const perda  = reds.reduce((s,a) => s+(Number(a.stake)||0), 0);
+  const saldo  = lucro - perda;
+  const totalStake = lista.reduce((s,a) => s+(Number(a.stake)||0), 0);
+  const taxa   = finalizadas > 0 ? Math.round((greens.length/finalizadas)*100) : 0;
+  const roi    = totalStake > 0 ? ((saldo/totalStake)*100).toFixed(1) : '0.0';
+  return { lista, greens: greens.length, reds: reds.length, finalizadas, saldo, taxa, roi };
+}
+
+function setSaldo(el, val) {
+  const v = parseFloat(val);
+  el.textContent = (v >= 0 ? 'R$ ' : '-R$ ') + Math.abs(v).toFixed(2).replace('.',',');
+  el.style.color = v >= 0 ? 'var(--green)' : 'var(--red)';
+}
+
+function setRoi(el, val) {
+  const v = parseFloat(val);
+  el.textContent = (v >= 0 ? '+' : '') + v + '%';
+  el.style.color = v >= 0 ? 'var(--green)' : 'var(--red)';
+}
+
+function desenharGrafico() {
+  const canvas = document.getElementById('grafico-evolucao');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  // filtrar apostas
+  let lista = apostas.filter(a => a.result === 'GREEN' || a.result === 'RED');
+  if (grafFiltro !== 'all') {
+    lista = lista.filter(a => {
+      const { modeloRaw } = parseDesc(a.description);
+      return modeloRaw === grafFiltro;
+    });
+  }
+  lista = [...lista].sort((a,b) => new Date(a.created_at) - new Date(b.created_at));
+
+  const vazio = document.getElementById('grafico-vazio');
+  if (lista.length === 0) {
+    if (vazio) { vazio.style.display = 'flex'; vazio.style.position = 'absolute'; }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    return;
+  }
+  if (vazio) vazio.style.display = 'none';
+
+  // dimensões
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth; const H = canvas.offsetHeight;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+
+  const padL=48, padR=20, padT=20, padB=36;
+  const gW = W - padL - padR;
+  const gH = H - padT - padB;
+
+  // pontos acumulados
+  const pontos = [0];
+  lista.forEach(a => {
+    const prev = pontos[pontos.length-1];
+    if (a.result === 'GREEN') pontos.push(prev + (Number(a.profit)||0));
+    else pontos.push(prev - (Number(a.stake)||0));
+  });
+
+  const minV = Math.min(...pontos);
+  const maxV = Math.max(...pontos);
+  const range = maxV - minV || 1;
+
+  const toX = i => padL + (i / (pontos.length-1)) * gW;
+  const toY = v => padT + gH - ((v - minV) / range) * gH;
+
+  // zero line
+  const zeroY = toY(0);
+  ctx.beginPath();
+  ctx.strokeStyle = 'rgba(255,68,68,0.25)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4,4]);
+  ctx.moveTo(padL, zeroY); ctx.lineTo(padL+gW, zeroY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // grade horizontal
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1;
+  for (let i=0; i<=4; i++) {
+    const y = padT + (gH/4)*i;
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(padL+gW, y); ctx.stroke();
+  }
+
+  // labels eixo Y
+  ctx.fillStyle = '#444455';
+  ctx.font = '10px Inter, sans-serif';
+  ctx.textAlign = 'right';
+  for (let i=0; i<=4; i++) {
+    const v = maxV - (range/4)*i;
+    const y = padT + (gH/4)*i;
+    ctx.fillText((v>=0?'':'-')+'R$'+Math.abs(v).toFixed(0), padL-6, y+4);
+  }
+
+  // labels eixo X
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#444455';
+  const step = Math.max(1, Math.floor(lista.length/6));
+  lista.forEach((a,i) => {
+    if (i % step !== 0 && i !== lista.length-1) return;
+    const x = toX(i+1);
+    const d = a.created_at ? new Date(a.created_at).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'}) : '';
+    ctx.fillText(d, x, H-padB+16);
+  });
+
+  // gradiente fill
+  const grad = ctx.createLinearGradient(0, padT, 0, padT+gH);
+  const finalVal = pontos[pontos.length-1];
+  const mainColor = finalVal >= 0 ? '0,255,136' : '255,68,68';
+  grad.addColorStop(0, `rgba(${mainColor},0.18)`);
+  grad.addColorStop(1, `rgba(${mainColor},0)`);
+
+  ctx.beginPath();
+  ctx.moveTo(toX(0), toY(0));
+  pontos.forEach((v,i) => ctx.lineTo(toX(i), toY(v)));
+  ctx.lineTo(toX(pontos.length-1), padT+gH);
+  ctx.lineTo(toX(0), padT+gH);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // linha principal
+  ctx.beginPath();
+  ctx.strokeStyle = finalVal >= 0 ? '#00ff88' : '#ff4444';
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  pontos.forEach((v,i) => i===0 ? ctx.moveTo(toX(i),toY(v)) : ctx.lineTo(toX(i),toY(v)));
+  ctx.stroke();
+
+  // pontos
+  pontos.forEach((v,i) => {
+    if (i===0) return;
+    const bet = lista[i-1];
+    const cor = bet.result==='GREEN' ? '#00ff88' : '#ff4444';
+    ctx.beginPath();
+    ctx.arc(toX(i), toY(v), 4, 0, Math.PI*2);
+    ctx.fillStyle = cor;
+    ctx.fill();
+    ctx.strokeStyle = '#0a0a0f';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  });
+}
+
+function renderAnalise() {
+  const greens = apostas.filter(a => a.result === 'GREEN');
+  const reds   = apostas.filter(a => a.result === 'RED');
+  const finalizadas = greens.length + reds.length;
+  const lucro  = greens.reduce((s,a) => s+(Number(a.profit)||0), 0);
+  const perda  = reds.reduce((s,a) => s+(Number(a.stake)||0), 0);
+  const saldo  = lucro - perda;
+  const totalStake = apostas.reduce((s,a) => s+(Number(a.stake)||0), 0);
+  const taxa   = finalizadas>0 ? Math.round((greens.length/finalizadas)*100) : 0;
+  const roi    = totalStake>0 ? ((saldo/totalStake)*100).toFixed(1) : '0.0';
+
+  // topo
+  setSaldo(document.getElementById('an-saldo'), saldo);
+  document.getElementById('an-roi').textContent = 'ROI: '+(parseFloat(roi)>=0?'+':'')+roi+'%';
+  document.getElementById('an-taxa').textContent = taxa+'%';
+  document.getElementById('an-finalizadas').textContent = finalizadas+' finalizadas';
+
+  // sequência atual (últimas apostas finalizadas)
+  const seq = [...greens,...reds].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+  let streak=0, streakTipo='';
+  if (seq.length > 0) {
+    streakTipo = seq[0].result;
+    for (const a of seq) {
+      if (a.result === streakTipo) streak++; else break;
+    }
+  }
+  const seqEl = document.getElementById('an-sequencia');
+  seqEl.textContent = streak;
+  seqEl.style.color = streakTipo==='GREEN' ? 'var(--green)' : streakTipo==='RED' ? 'var(--red)' : 'var(--text2)';
+  document.getElementById('an-sequencia-label').textContent = streakTipo ? streak+' '+streakTipo+'s seguidos' : 'sem apostas';
+
+  // modelos
+  const cons = calcModelo('conservadora');
+  const real = calcModelo('realista');
+  const otim = calcModelo('otimista');
+
+  // melhor modelo
+  const modelos = [
+    { nome:'Conservadora', taxa:cons.taxa },
+    { nome:'Realista', taxa:real.taxa },
+    { nome:'Otimista', taxa:otim.taxa }
+  ].filter(m => {
+    const data = m.nome==='Conservadora' ? cons : m.nome==='Realista' ? real : otim;
+    return data.finalizadas > 0;
+  });
+  if (modelos.length > 0) {
+    const melhor = modelos.reduce((a,b) => b.taxa>a.taxa?b:a);
+    document.getElementById('an-melhor-modelo').textContent = melhor.nome;
+    document.getElementById('an-melhor-taxa').textContent = melhor.taxa+'% acerto';
+  }
+
+  // cards modelos
+  document.getElementById('an-cons-count').textContent = cons.lista.length+' apostas';
+  document.getElementById('an-cons-taxa').textContent = cons.taxa+'%';
+  document.getElementById('an-cons-green').textContent = cons.greens;
+  document.getElementById('an-cons-red').textContent = cons.reds;
+  setSaldo(document.getElementById('an-cons-saldo'), cons.saldo);
+  setRoi(document.getElementById('an-cons-roi'), cons.roi);
+
+  document.getElementById('an-real-count').textContent = real.lista.length+' apostas';
+  document.getElementById('an-real-taxa').textContent = real.taxa+'%';
+  document.getElementById('an-real-green').textContent = real.greens;
+  document.getElementById('an-real-red').textContent = real.reds;
+  setSaldo(document.getElementById('an-real-saldo'), real.saldo);
+  setRoi(document.getElementById('an-real-roi'), real.roi);
+
+  document.getElementById('an-otim-count').textContent = otim.lista.length+' apostas';
+  document.getElementById('an-otim-taxa').textContent = otim.taxa+'%';
+  document.getElementById('an-otim-green').textContent = otim.greens;
+  document.getElementById('an-otim-red').textContent = otim.reds;
+  setSaldo(document.getElementById('an-otim-saldo'), otim.saldo);
+  setRoi(document.getElementById('an-otim-roi'), otim.roi);
+
+  // últimas finalizadas
+  const ultimas = [...greens,...reds].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,10);
+  document.getElementById('an-ultimas-count').textContent = 'Últimas '+ultimas.length;
+  if (ultimas.length === 0) {
+    document.getElementById('an-ultimas-lista').innerHTML = '<div style="text-align:center;padding:24px;color:var(--text3);font-size:13px;">Nenhuma aposta finalizada ainda</div>';
+  } else {
+    document.getElementById('an-ultimas-lista').innerHTML = ultimas.map(bet => {
+      const { evento, mercado, modeloRaw } = parseDesc(bet.description);
+      const data = bet.created_at ? new Date(bet.created_at).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
+      const stake = Number(bet.stake)||0;
+      const profit = Number(bet.profit)||0;
+      const isGreen = bet.result==='GREEN';
+      const icon = isGreen?'🟢':'🔴';
+      const iconClass = isGreen?'extrato-icon-green':'extrato-icon-red';
+      const valClass = isGreen?'extrato-val-green':'extrato-val-red';
+      const valText = isGreen?'+R$ '+profit.toFixed(2):'-R$ '+stake.toFixed(2);
+      const modeloColor = modeloRaw==='conservadora'?'var(--green)':modeloRaw==='realista'?'var(--yellow)':'var(--purple)';
+      return `<div class="extrato-item">
+        <div class="extrato-info">
+          <div class="extrato-icon ${iconClass}">${icon}</div>
+          <div>
+            <div class="extrato-evento">${evento||'Aposta'} <span style="font-size:10px;color:${modeloColor};font-weight:700;text-transform:capitalize;">${modeloRaw||''}</span></div>
+            <div class="extrato-data">${mercado?mercado+' · ':''}${data}</div>
+          </div>
+        </div>
+        <div class="${valClass}">${valText}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // gráfico
+  setTimeout(desenharGrafico, 50);
+}
+
+// ── NAVEGAÇÃO ────────────────────────────────────────
+function navegarPara(pagina) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + pagina).classList.add('active');
+  const navEl = document.getElementById('nav-' + pagina);
+  if (navEl) navEl.classList.add('active');
+  if (pagina === 'banca') renderBanca();
+  if (pagina === 'analise') renderAnalise();
+}
+
+// ── BANCA ────────────────────────────────────────────
+function renderBanca() {
+  const greens = apostas.filter(a => a.result === 'GREEN');
+  const reds = apostas.filter(a => a.result === 'RED');
+  const cashouts = apostas.filter(a => a.result === 'CASHOUT');
+  const pendentes = apostas.filter(a => !a.result || a.result === 'PENDING');
+
+  const totalLucro = greens.reduce((s, a) => s + (Number(a.profit) || 0), 0);
+  const totalPerda = reds.reduce((s, a) => s + (Number(a.stake) || 0), 0);
+  const totalPendente = pendentes.reduce((s, a) => s + (Number(a.stake) || 0), 0);
+  const saldo = totalLucro - totalPerda;
+
+  const totalApostado = apostas.reduce((s, a) => s + (Number(a.stake) || 0), 0);
+  const totalFinalizadas = greens.length + reds.length;
+  const taxaAcerto = totalFinalizadas > 0 ? Math.round((greens.length / totalFinalizadas) * 100) : 0;
+  const roi = totalApostado > 0 ? ((saldo / totalApostado) * 100).toFixed(1) : 0;
+  const oddMedia = apostas.length > 0 ? (apostas.reduce((s, a) => s + (Number(a.odd) || 0), 0) / apostas.length).toFixed(2) : '0.00';
+  const stakeMedia = apostas.length > 0 ? (totalApostado / apostas.length).toFixed(2) : '0.00';
+  const lucroMedio = greens.length > 0 ? (totalLucro / greens.length).toFixed(2) : '0.00';
+
+  // Hero
+  const saldoEl = document.getElementById('banca-hero-valor');
+  saldoEl.textContent = 'R$ ' + Math.abs(saldo).toFixed(2).replace('.', ',');
+  saldoEl.style.color = saldo >= 0 ? 'var(--green)' : 'var(--red)';
+  if (saldo < 0) saldoEl.textContent = '-R$ ' + Math.abs(saldo).toFixed(2).replace('.', ',');
+  document.getElementById('banca-hero-sub').textContent = apostas.length + ' apostas no total · ' + pendentes.length + ' pendentes';
+  document.getElementById('banca-hero-lucro').textContent = 'R$ ' + totalLucro.toFixed(2);
+  document.getElementById('banca-hero-perda').textContent = 'R$ ' + totalPerda.toFixed(2);
+  document.getElementById('banca-hero-pendente').textContent = 'R$ ' + totalPendente.toFixed(2);
+
+  // Performance
+  document.getElementById('bperf-green').textContent = greens.length;
+  document.getElementById('bperf-red').textContent = reds.length;
+  document.getElementById('bperf-pending').textContent = pendentes.length;
+  document.getElementById('bperf-cashout').textContent = cashouts.length;
+  document.getElementById('bperf-total').textContent = apostas.length;
+
+  // Métricas
+  document.getElementById('bmet-taxa').textContent = taxaAcerto + '%';
+  document.getElementById('bmet-taxa-bar').style.width = taxaAcerto + '%';
+  const roiNum = parseFloat(roi);
+  document.getElementById('bmet-roi').textContent = (roiNum >= 0 ? '+' : '') + roi + '%';
+  document.getElementById('bmet-roi').style.color = roiNum >= 0 ? 'var(--green)' : 'var(--red)';
+  document.getElementById('bmet-roi-bar').style.width = Math.min(Math.abs(roiNum), 100) + '%';
+  document.getElementById('bmet-roi-bar').style.background = roiNum >= 0 ? 'linear-gradient(90deg,var(--green),var(--green2))' : 'linear-gradient(90deg,var(--red),#cc2222)';
+  document.getElementById('bmet-odd').textContent = oddMedia;
+  document.getElementById('bmet-stake').textContent = 'R$ ' + parseFloat(stakeMedia).toFixed(2).replace('.', ',');
+  document.getElementById('bmet-lucro-medio').textContent = 'R$ ' + parseFloat(lucroMedio).toFixed(2).replace('.', ',');
+
+  // Extrato
+  const finalizadas = [...greens, ...reds, ...cashouts].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  document.getElementById('banca-extrato-count').textContent = finalizadas.length + ' registros';
+
+  if (finalizadas.length === 0) {
+    document.getElementById('banca-extrato-lista').innerHTML = '<div style="text-align:center;padding:32px;color:var(--text3);font-size:13px;">Nenhuma aposta finalizada ainda</div>';
+    return;
+  }
+
+  const extratoHTML = finalizadas.map(bet => {
+    const { evento, mercado } = parseDesc(bet.description);
+    const data = bet.created_at ? new Date(bet.created_at).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '';
+    const stake = Number(bet.stake) || 0;
+    const profit = Number(bet.profit) || 0;
+
+    let icon, iconClass, valClass, valText;
+    if (bet.result === 'GREEN') {
+      icon = '🟢'; iconClass = 'extrato-icon-green'; valClass = 'extrato-val-green'; valText = '+R$ ' + profit.toFixed(2);
+    } else if (bet.result === 'RED') {
+      icon = '🔴'; iconClass = 'extrato-icon-red'; valClass = 'extrato-val-red'; valText = '-R$ ' + stake.toFixed(2);
+    } else {
+      icon = '💜'; iconClass = 'extrato-icon-yellow'; valClass = 'extrato-val-yellow'; valText = 'Cashout';
+    }
+
+    return `<div class="extrato-item">
+      <div class="extrato-info">
+        <div class="extrato-icon ${iconClass}">${icon}</div>
+        <div>
+          <div class="extrato-evento">${evento || 'Aposta'}</div>
+          <div class="extrato-data">${mercado ? mercado + ' · ' : ''}${data}</div>
+        </div>
+      </div>
+      <div class="${valClass}">${valText}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('banca-extrato-lista').innerHTML = extratoHTML;
 }
 
 // ── DELETAR APOSTA ───────────────────────────────────
