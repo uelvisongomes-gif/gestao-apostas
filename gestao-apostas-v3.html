@@ -330,7 +330,8 @@ async function buscarPartidas() {
         cartoes: cardsHome + cardsAway,
         minuto: f.fixture.status.elapsed ? f.fixture.status.elapsed + "'" : '',
         campeonato: f.league.name,
-        isLive: true
+        isLive: true,
+        encerrado: ['FT','AET','PEN','ABD','AWD','WO'].includes(f.fixture.status.short)
       };
     }));
 
@@ -392,13 +393,13 @@ function cardHTML(bet) {
   const data = bet.created_at ? new Date(bet.created_at).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
 
   const ph = parseInt(placar?.split(':')[0]) || 0;
-const pa = parseInt(placar?.split(':')[1]) || 0;
-const placarValido = placar && ph <= 10 && pa <= 10;
-const scoreHome = live ? live.scoreHome : (placarValido ? ph : '—');
-const scoreAway = live ? live.scoreAway : (placarValido ? pa : '—');
-const gols = live ? live.gols : (placarValido ? ph + pa : 0);
-const escanteios = live ? live.escanteios : 0;
-const cartoes = live ? live.cartoes : 0;
+  const pa = parseInt(placar?.split(':')[1]) || 0;
+  const placarValido = placar && ph <= 10 && pa <= 10;
+  const scoreHome = live ? live.scoreHome : (placarValido ? ph : '—');
+  const scoreAway = live ? live.scoreAway : (placarValido ? pa : '—');
+  const gols = live ? live.gols : (placarValido ? ph + pa : 0);
+  const escanteios = live ? live.escanteios : 0;
+  const cartoes = live ? live.cartoes : 0;
   const minutoDisplay = live ? live.minuto : minuto;
   const campDisplay = (live ? live.campeonato : campeonato) || 'CAMPEONATO';
 
@@ -432,7 +433,8 @@ const cartoes = live ? live.cartoes : 0;
     </div>` : `<div style="font-size:10px;color:var(--text3);">${data}</div>`;
 
   return `
-  <div class="bet-card ${cardClass}" id="card-${bet.id}">
+  <div class="bet-card ${cardClass}" id="card-${bet.id}" style="position:relative;">
+    <button onclick="deletarAposta('${bet.id}')" style="position:absolute;top:8px;right:8px;background:rgba(255,68,68,0.15);border:1px solid rgba(255,68,68,0.3);color:#ff4444;width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:12px;line-height:1;z-index:10;display:flex;align-items:center;justify-content:center;" title="Excluir aposta">✕</button>
     <div class="card-header">
       <div class="card-camp"><div class="card-camp-dot"></div>${campDisplay.toUpperCase().slice(0,30)}</div>
       <div class="card-right">
@@ -623,6 +625,84 @@ function showToast(msg) {
 document.getElementById('filtro-status').addEventListener('change', function() { filtro=this.value; renderApostas(); });
 document.getElementById('modal-overlay').addEventListener('click', function(e) { if(e.target===this) fecharModal(); });
 
+// ── RESOLUÇÃO AUTOMÁTICA DE APOSTAS ──────────────────
+async function resolverApostasAutomaticas() {
+  const pendentes = apostas.filter(a => !a.result || a.result === 'PENDING');
+  if (pendentes.length === 0) return;
+
+  for (const bet of pendentes) {
+    const { timeHome, timeAway, mercado, tipoMercado, threshold } = parseDesc(bet.description);
+    if (!mercado || threshold === null) continue;
+
+    const live = getLiveData(timeHome, timeAway);
+    if (!live) continue; // sem dados ao vivo, pula
+
+    const gols = live.gols;
+    const escanteios = live.escanteios;
+    const cartoes = live.cartoes;
+    const jogoEncerrado = live.encerrado || false;
+
+    // Determinar qual stat usar baseado no mercado
+    const m = mercado.toLowerCase();
+    let valorAtual = 0;
+    if (m.includes('gol')) valorAtual = gols;
+    else if (m.includes('escanteio') || m.includes('canto')) valorAtual = escanteios;
+    else if (m.includes('cart')) valorAtual = cartoes;
+    else continue;
+
+    let resultado = null;
+
+    if (tipoMercado === 'under') {
+      // UNDER: se valor atual >= threshold → RED imediato (impossível ganhar)
+      if (valorAtual >= threshold) resultado = 'RED';
+      // Se jogo encerrou e valor < threshold → GREEN
+      else if (jogoEncerrado && valorAtual < threshold) resultado = 'GREEN';
+    } else if (tipoMercado === 'over') {
+      // OVER: se valor atual > threshold → GREEN imediato
+      if (valorAtual > threshold) resultado = 'GREEN';
+      // Se jogo encerrou e valor <= threshold → RED
+      else if (jogoEncerrado && valorAtual <= threshold) resultado = 'RED';
+    }
+
+    if (resultado) {
+      const stake = Number(bet.stake) || 0;
+      const odd = Number(bet.odd) || 1;
+      const profit = resultado === 'GREEN' ? parseFloat(((stake * odd) - stake).toFixed(2)) : -stake;
+
+      try {
+        await fetch(SB_URL + '/rest/v1/bets?id=eq.' + bet.id, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY },
+          body: JSON.stringify({ result: resultado, profit })
+        });
+
+        const emoji = resultado === 'GREEN' ? '🟢' : '🔴';
+        const { mercado: mLabel } = parseDesc(bet.description);
+        showToast(`${emoji} Auto: ${mLabel} — ${resultado}! ${resultado === 'GREEN' ? '+R$ '+profit.toFixed(2) : '-R$ '+stake.toFixed(2)}`);
+        console.log('[AUTO]', resultado, bet.id, mLabel, '| valor:', valorAtual, 'threshold:', threshold);
+      } catch(e) {
+        console.error('[AUTO] Erro ao registrar resultado:', e);
+      }
+    }
+  }
+
+  // Recarregar se houve alguma resolução
+  await carregarApostas();
+}
+
+// ── DELETAR APOSTA ───────────────────────────────────
+async function deletarAposta(id) {
+  if (!confirm('Excluir esta aposta?')) return;
+  try {
+    await fetch(SB_URL + '/rest/v1/bets?id=eq.' + id, {
+      method: 'DELETE',
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
+    });
+    showToast('🗑️ Aposta excluída');
+    await carregarApostas();
+  } catch(e) { showToast('❌ Erro ao excluir'); }
+}
+
 // ── INIT ─────────────────────────────────────────────
 async function init() {
   await carregarApostas();
@@ -631,7 +711,10 @@ async function init() {
 
   // Atualizar apostas a cada 5s, API Football a cada 30s
   setInterval(carregarApostas, 5000);
-  setInterval(buscarPartidas, 30000);
+  setInterval(async () => {
+    await buscarPartidas();
+    await resolverApostasAutomaticas();
+  }, 30000);
 }
 
 init();
