@@ -271,29 +271,45 @@ async function buscarPartidas() {
 
     // Montar cache por nome dos times
     liveDataCache = {};
-    fixturesAoVivo.forEach(f => {
-      const homeNome = f.teams.home.name.toLowerCase();
-      const awayNome = f.teams.away.name.toLowerCase();
-      const chave = homeNome + '_' + awayNome;
 
-      // Buscar estatísticas
-      const stats = f.statistics || [];
-      const getStat = (team, tipo) => {
-        const teamStats = stats.find(s => s.team.name.toLowerCase() === (team === 'home' ? homeNome : awayNome));
-        if (!teamStats) return 0;
-        const stat = teamStats.statistics.find(s => s.type === tipo);
-        return stat?.value || 0;
-      };
+    // Buscar estatísticas de cada jogo em paralelo (máx 5 para economizar quota)
+    const jogosParaBuscar = fixturesAoVivo.slice(0, 10);
+    await Promise.all(jogosParaBuscar.map(async f => {
+      const homeNome = f.teams.home.name;
+      const awayNome = f.teams.away.name;
+      const chave = homeNome.toLowerCase() + '_' + awayNome.toLowerCase();
 
       const goalsHome = f.goals.home ?? 0;
       const goalsAway = f.goals.away ?? 0;
-      const cornersHome = getStat('home', 'Corner Kicks');
-      const cornersAway = getStat('away', 'Corner Kicks');
-      const cardsHome = (getStat('home', 'Yellow Cards') || 0) + (getStat('home', 'Red Cards') || 0);
-      const cardsAway = (getStat('away', 'Yellow Cards') || 0) + (getStat('away', 'Red Cards') || 0);
+
+      let cornersHome = 0, cornersAway = 0, cardsHome = 0, cardsAway = 0;
+
+      try {
+        const sR = await fetch(API_FOOTBALL_URL + '/fixtures/statistics?fixture=' + f.fixture.id, {
+          headers: { 'x-apisports-key': API_FOOTBALL_KEY }
+        });
+        const sData = await sR.json();
+        const stats = sData.response || [];
+
+        const getStat = (teamIdx, tipo) => {
+          const teamStats = stats[teamIdx];
+          if (!teamStats) return 0;
+          const stat = teamStats.statistics.find(s => s.type === tipo);
+          return parseInt(stat?.value) || 0;
+        };
+
+        cornersHome = getStat(0, 'Corner Kicks');
+        cornersAway = getStat(1, 'Corner Kicks');
+        cardsHome = getStat(0, 'Yellow Cards') + getStat(0, 'Red Cards');
+        cardsAway = getStat(1, 'Yellow Cards') + getStat(1, 'Red Cards');
+      } catch(e) {
+        console.warn('Erro ao buscar stats de', homeNome, 'x', awayNome);
+      }
 
       liveDataCache[chave] = {
         fixtureId: f.fixture.id,
+        nomeHome: f.teams.home.name,
+        nomeAway: f.teams.away.name,
         scoreHome: goalsHome,
         scoreAway: goalsAway,
         gols: goalsHome + goalsAway,
@@ -303,8 +319,22 @@ async function buscarPartidas() {
         campeonato: f.league.name,
         isLive: true
       };
-    });
+      liveDataCache[chave] = {
+        fixtureId: f.fixture.id,
+        nomeHome: homeNome,
+        nomeAway: awayNome,
+        scoreHome: goalsHome,
+        scoreAway: goalsAway,
+        gols: goalsHome + goalsAway,
+        escanteios: cornersHome + cornersAway,
+        cartoes: cardsHome + cardsAway,
+        minuto: f.fixture.status.elapsed ? f.fixture.status.elapsed + "'" : '',
+        campeonato: f.league.name,
+        isLive: true
+      };
+    }));
 
+    console.log('[API] Cache montado:', Object.keys(liveDataCache).length, 'jogos');
     renderApostas();
   } catch(e) {
     console.error('API Football erro:', e);
@@ -312,22 +342,33 @@ async function buscarPartidas() {
   }
 }
 
+// Normaliza nome do time para comparação
+function normalizarNome(nome) {
+  return (nome || '').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove acentos
+    .replace(/[^a-z0-9\s]/g, '')
+    .trim();
+}
+
+// Verifica se dois nomes de times são compatíveis
+function timesCompatíveis(nomeAposta, nomeAPI) {
+  const a = normalizarNome(nomeAposta);
+  const b = normalizarNome(nomeAPI);
+  if (a === b) return true;
+  if (a.includes(b) || b.includes(a)) return true;
+  // Compara primeira palavra significativa (>2 chars)
+  const palavrasA = a.split(/\s+/).filter(p => p.length > 2);
+  const palavrasB = b.split(/\s+/).filter(p => p.length > 2);
+  return palavrasA.some(pa => palavrasB.some(pb => pa.includes(pb) || pb.includes(pa)));
+}
+
 // Buscar live data para uma aposta pelo nome dos times
 function getLiveData(timeHome, timeAway) {
   if (!timeHome || !timeAway) return null;
-  const homeL = timeHome.toLowerCase();
-  const awayL = timeAway.toLowerCase();
-
-  // Busca exata
-  const chaveExata = homeL + '_' + awayL;
-  if (liveDataCache[chaveExata]) return liveDataCache[chaveExata];
-
-  // Busca parcial (nome contém)
-  for (const [chave, data] of Object.entries(liveDataCache)) {
-    const [cHome, cAway] = chave.split('_');
-    const homeMatch = cHome.includes(homeL.split(' ')[0]) || homeL.includes(cHome.split(' ')[0]);
-    const awayMatch = cAway.includes(awayL.split(' ')[0]) || awayL.includes(cAway.split(' ')[0]);
-    if (homeMatch && awayMatch) return data;
+  for (const data of Object.values(liveDataCache)) {
+    if (timesCompatíveis(timeHome, data.nomeHome) && timesCompatíveis(timeAway, data.nomeAway)) {
+      return data;
+    }
   }
   return null;
 }
