@@ -208,7 +208,7 @@ select { background:var(--bg2); border:1px solid var(--border); color:var(--text
     <div><div class="logo-text">GESTÃO DE APOSTAS</div><div class="logo-sub">Painel do Apostador</div></div>
   </div>
   <nav>
-    <a class="nav-item" href="#" onclick="navegarPara('dashboard');return false;">
+    <a class="nav-item" href="#" onclick="navegarPara('apostas');return false;" id="nav-dashboard">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
       Dashboard
     </a>
@@ -1313,9 +1313,11 @@ function renderAnalise() {
 
 // ── NAVEGAÇÃO ────────────────────────────────────────
 function navegarPara(pagina) {
+  const pageEl = document.getElementById('page-' + pagina);
+  if (!pageEl) return;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('page-' + pagina).classList.add('active');
+  pageEl.classList.add('active');
   const navEl = document.getElementById('nav-' + pagina);
   if (navEl) navEl.classList.add('active');
   if (pagina === 'banca') renderBanca();
